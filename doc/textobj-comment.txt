@@ -8,10 +8,10 @@ DESCRIPTION					*textobj-comment*
 
 This plugin provides |text-objects| to select comments.
 
-"ac" selects a comment including the comment delimiters, "ic" selects the
+"ag" selects a comment including the comment delimiters, "ig" selects the
 comment content without the delimiters.  This behaviour is modeled after the
 built-in delimited text objects such as |a[| and |it|.  A third text object,
-"aC", selects a "big" comment, including trailing or leading whitespace.
+"aG", selects a "big" comment, including trailing or leading whitespace.
 
 |textobj-comment| uses the filetype-specific 'comments' setting to determine
 what a comment looks like for a given language.  Make sure you have enabled
@@ -31,7 +31,7 @@ https://github.com/kana/vim-textobj-user
 
 USAGE						*textobj-comment-usage*
 
-The text objects "ac", "ic", and "aC" are defined in |Visual| and
+The text objects "ag", "ig", and "aG" are defined in |Visual| and
 |Operator-pending| mode.  When the user enters any one of these text objects,
 textobj-comment searches for a comment by using this procedure:
 
@@ -48,20 +48,20 @@ the heuristic.  See also |textobj-comment-interface| below for more details.
 
 
 1.  First, look for a full-line comment under the cursor.  In full-line
-    context "ac" selects a comment |linewise| (the vertical bar indicates
+    context "ag" selects a comment |linewise| (the vertical bar indicates
     selected lines). >
 
        |    # We should probably inline
        |    # this con[s]tant
 	    DOZEN = 12
 <
-    "ic" selects just what's inside the comment and always operates
+    "ig" selects just what's inside the comment and always operates
     |characterwise| (the overline indicates selected characters). >
 	       _________________________
 	    %  See [t]he TeXbook, p. 352
 	    \def\thinspace{\kern .16667em }
 <
-    The "aC" text object selects "a big comment", which is the same as "ac"
+    The "aG" text object selects "a big comment", which is the same as "ag"
     but includes whitespace after the comment, or if there isn't any,
     whitespace before the comment. >
 
@@ -72,32 +72,32 @@ the heuristic.  See also |textobj-comment-interface| below for more details.
 
 
 2.  Second, look for an inline or an end-of-line comment.  Inline and
-    end-of-line comments are selected characterwise.  Again, "ac" selects a
+    end-of-line comments are selected characterwise.  Again, "ag" selects a
     comment including the delimiter. >
 						    __________________
 	    *parse_syllab[l]e = \&parse_syllables;  # deprecated alias
 <
-    "aC" selects the same but with trailing or leading whitespace included.
+    "aG" selects the same but with trailing or leading whitespace included.
     This is especially useful when you want to delete an end-of-line comment
     and not leave any whitespace behind. >
 			    __________________________
 	    int tem[p] = 12;    /* core temperature */
 <
     For inline comments, a match under the cursor is preferred, else one to
-    the right of the cursor is selected.  With "ic": >
+    the right of the cursor is selected.  With "ig": >
 		   ______
 	    int /* tem[p] */ temperature = 12; // renamed variable
 
 
 3.  Third, if there hasn't been any success so far, search upwards for the
-    nearest full-line comment.  Using "ac": >
+    nearest full-line comment.  Using "ag": >
 
        |    (* Let us make
        |       a singleton. *)
 	    let s = SS.singleton "umb[r]ella";;
 <
     Of course, the three steps always apply to all three text objects.  Here's
-    a final example featuring "ic" searching upwards to find its target. >
+    a final example featuring "ig" searching upwards to find its target. >
 		 _________________
 	    <!-- This needs to be
 	____________________
@@ -131,9 +131,9 @@ so that you can use "v" to switch to a useful characterwise selection. |v_v|
 
 INTERFACE					*textobj-comment-interface*
 
-By default, textobj-comment defines the key mappings "ac", "ic", and "aC" for
+By default, textobj-comment defines the key mappings "ag", "ig", and "aG" for
 the text objects it provides.  These map to named <Plug> mappings and can be
-customized easily.  For example, to use "ax" instead of "ac": >
+customized easily.  For example, to use "ax" instead of "ag": >
 
 	let g:textobj_comment_no_default_key_mappings = 1
 	xmap ax <Plug>(textobj-comment-a)
@@ -143,19 +143,19 @@ The mappings are defined in Visual and Operator-pending mode.  See the
 |textobj-user| documentation for more info.
 
 						*<Plug>(textobj-comment-a)*
-ac			<Plug>(textobj-comment-a)
+ag			<Plug>(textobj-comment-a)
 			"a comment", select a comment with delimiter.
 			Select linewise for full-line comments, characterwise
 			for inline and end-of-line comments.
 
 						*<Plug>(textobj-comment-i)*
-ic			<Plug>(textobj-comment-i)
+ig			<Plug>(textobj-comment-i)
 			"inner comment", select the content inside the comment
 			delimiter.
 			Always characterwise.
 
 					       *<Plug>(textobj-comment-big-a)*
-aC			<Plug>(textobj-comment-big-a)
+aG			<Plug>(textobj-comment-big-a)
 			"a big comment", select a comment with delimiter and
 			whitespace after the comment, or if there isn't any,
 			whitespace before the comment.

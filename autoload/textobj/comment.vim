@@ -363,7 +363,7 @@ function! s:AdjustLineEnds(comment, whitespace, inside) abort
     let end[1] += strlen(leader[1]) - 1
   endif
 
-  " For "aC", move the end over trailing blank lines, if there aren't any move
+  " For "aG", move the end over trailing blank lines, if there aren't any move
   " the start over leading blank lines
   if a:whitespace
     if end[0] + 1 <= line("$") && s:isblank(end[0] + 1)
@@ -393,9 +393,9 @@ function! s:AdjustInlineEnds(comment, whitespace, inside) abort
   let [leader, start, end] = a:comment
 
   if type(leader) == type([])
-    " For "ac" and "aC", move the end over the end leader
+    " For "ag" and "aG", move the end over the end leader
     let end[1] += strlen(leader[1]) - 1
-    " For "aC", move the end over trailing whitespace, if there isn't any move
+    " For "aG", move the end over trailing whitespace, if there isn't any move
     " the start over leading whitespace
     if a:whitespace
       call cursor(end[0], end[1])
@@ -415,7 +415,7 @@ function! s:AdjustInlineEnds(comment, whitespace, inside) abort
     endif
   else
     if a:whitespace
-      " For "aC", move the end over trailing whitespace, if there isn't any
+      " For "aG", move the end over trailing whitespace, if there isn't any
       " move the start over leading whitespace
       call cursor(end[0], end[1])
       let newend = searchpos('\s$', 'cn', line("."))
@@ -425,7 +425,7 @@ function! s:AdjustInlineEnds(comment, whitespace, inside) abort
         let start[1] = s:nextcol(0, newstart[1])
       endif
     else
-      " For "ac", move the end to the last non-whitespace character
+      " For "ag", move the end to the last non-whitespace character
       let end[1] = start[1] + strlen(leader) - 1
       call cursor(end[0], end[1])
       let newend = searchpos('\S\s*$', 'n', line("."))

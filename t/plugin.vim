@@ -1,8 +1,8 @@
 runtime! plugin/textobj/comment.vim
 
-let g:maps = { 'ac': '<Plug>(textobj-comment-a)',
-             \ 'ic': '<Plug>(textobj-comment-i)',
-             \ 'aC': '<Plug>(textobj-comment-big-a)' }
+let g:maps = { 'ag': '<Plug>(textobj-comment-a)',
+             \ 'ig': '<Plug>(textobj-comment-i)',
+             \ 'aG': '<Plug>(textobj-comment-big-a)' }
 
 describe 'plugin'
 

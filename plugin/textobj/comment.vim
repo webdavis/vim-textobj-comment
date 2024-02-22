@@ -16,13 +16,13 @@ endif
 call textobj#user#plugin('comment', {
      \   '-': {
      \     'select-a-function': 'textobj#comment#select_a',
-     \     'select-a': 'ac',
+     \     'select-a': 'ag',
      \     'select-i-function': 'textobj#comment#select_i',
-     \     'select-i': 'ic',
+     \     'select-i': 'ig',
      \   },
      \   'big': {
      \     'select-a-function': 'textobj#comment#select_big_a',
-     \     'select-a': 'aC',
+     \     'select-a': 'aG',
      \   }
      \ })
 

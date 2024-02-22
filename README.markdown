@@ -3,8 +3,8 @@ textobj-comment
 
 This Vim plugin provides text objects for comments.
 
-`ac` selects a comment including the comment delimiters and `ic` selects
-just the comment content. (There's also a third text object, `aC`, which
+`ag` selects a comment including the comment delimiters and `ig` selects
+just the comment content. (There's also a third text object, `aG`, which
 selects a comment including trailing or leading whitespace.) These
 mappings are available in Visual and Operator-pending mode.
 
@@ -23,13 +23,13 @@ Comprehensive on-line documentation is included and available at
 `:h textobj-comment`.
 
 Below is a quick demo of the 'a comment' text object. The command used
-is `vac`. The targeted area is the same for analogous commands using an
-operator, such as `dac`, `cac`, and `gqac`.
+is `vag`. The targeted area is the same for analogous commands using an
+operator, such as `dag`, `cag`, and `gqag`.
 
 ![demo](https://raw.github.com/glts/vim-textobj-comment/gh-pages/images/demo-vac.gif)
 
 The 'inner comment' text object targets the inside of a comment. Here I
-use `cic`:
+use `cig`:
 
 ![demo](https://raw.github.com/glts/vim-textobj-comment/gh-pages/images/demo-cic.gif)
 
